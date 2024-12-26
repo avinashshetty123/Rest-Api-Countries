@@ -16,7 +16,12 @@ fetch("https://restcountries.com/v3.1/all")
 filterbycontinent.addEventListener("change", () => {
   fetch(`https://restcountries.com/v3.1/region/${filterbycontinent.value}`)
     .then((res) => res.json())
-    .then((data) => render(data))
+    .then((data) =>{
+      document.getElementById("shimmer").classList.add("hidden");  // Hide shimmer
+      document.getElementById("actual").classList.remove("hidden");
+      render(data)
+    })
+      
     .catch((err) => console.log(err));
 });
 function render(data) {

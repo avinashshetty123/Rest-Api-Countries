@@ -57,6 +57,8 @@ function render(data) {
       fetch(`https://restcountries.com/v3.1/alpha/${border}`)
         .then((res) => res.json())
         .then((data) => renderborder(data[0]));
+        document.getElementById("shimmer").classList.add("hidden");  // Hide shimmer
+        document.getElementById("actual").classList.remove("hidden");
     });
     function renderborder(data)
     {
