@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/output.css">
+</head>
+<script src="CountriesApi.js" defer></script>
+<body>
+    <body class="bg-white text-black dark:bg-gray-800 dark:text-white ">
+        <header class="flex justify-between flex-row mt-2 ">
+            <h2 class="text-center text-2xl ml-2 sm:text-4xl dark:text-white"><a href="/index.html">Where in World?</a></h2>
+          <img class="theme-changer h-4 sm:text-xl sm:h-10 mt-2 mr-2"src="./images/moon.svg" alt="theme">
+    
+        </header>
+        <div id="content" class="space-y-4">
+            <div id="shimmer" class="relative overflow-hidden bg-gray-200 rounded-md min-h-14 min-w-2 ml-2 p-4 flex">
+                <div class="absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer"></div>
+                <div class=" flex justify-center items-center text-black"><b>Loading...</b></div>
+            </div>
+        </div>
+        
+        <main class="hidden" id="actual">
+        <div class="country_detail_container size-full border-pink-300 md:text-xl">
+            <span class="back_btn ml-4 mt-6 border-2 border-green-300 flex flex-row w-3 hover:bg-purple-600 text-xs md:text-xl" onclick="history.back()"><img class="h-4 min-w-8 bg-lime-300 md:h-8 md:min-w-16" src="./images/backarrow.svg" alt="backarrow">Back</span>
+            <div class="country_detail flex flex-col mt-10 sm:flex-row justify-around items-center md:mt-32">
+                <div class="img_header p-2">
+                    
+                    <img src="" alt="flags" class="flags h-64 min-w-72 sm:min-w-96">
+                    <h1 class="common_name text-2xl text-center">Iceland</h1>
+                </div>
+                <div class="detail_container">
+                    <div class="detail_text flex items-center flex-col">
+                        <p><b class="dark:text-red-200">Native Name: </b><span class="Native_name">india</span></p>
+                        <p><b class="dark:text-red-200">Population: </b><span class="Population">india</span></p>
+                        <p><b class="dark:text-red-200">Region: </b><span class="Region">india</span></p>
+                        <p><b class="dark:text-red-200">Sub-Region: </b><span class="Sub-Region">india</span></p>
+                        <p><b class="dark:text-red-200">Capital: </b><span class="Capital">india</span></p>
+                        <p><b class="dark:text-red-200">Top Level Domain: </b><span class="Top_Level_Domain">india</span></p>
+                        <p><b class="dark:text-red-200">Currencies: </b><span class="Currencies">india</span></p>
+                        <p><b class="dark:text-red-200">Langauges: </b><span class="Languages">india</span></p>
+                    </div>
+                    <div class="border_countries flex flex-row gap-2 flex-wrap dark:text-red-200"><b>Border Countries: </b></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

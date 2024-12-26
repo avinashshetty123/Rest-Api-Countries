@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries</title>
+    <link href="./src/output.css" rel="stylesheet">
+</head>
+
+<script src="RestApi.js" defer></script>
+<body class="bg-white text-black dark:bg-gray-800">
+    <header class="flex justify-between flex-row mt-2 ">
+        <h2 class="text-center text-2xl ml-2 sm:text-4xl dark:text-white"><a href="/Countries.html">Where in World?</a></h2>
+      <img class="theme-changer h-4 sm:text-xl sm:h-10 mt-2 mr-2"src="./images/moon.svg" alt="theme">
+
+    </header>
+    <main>
+        <div class="search_container flex flex-row m-4 justify-center gap-2 dark:text-white">
+            <div class="search">
+                <input type="text" class="searcher bg-transparent" id="search_filter" placeholder="Search for the country">
+
+            </div>
+            <select name="Enter the Continent" class="hover:underline dark:bg-gray-800" id="sel">
+                <option hidden>Filter by region</option>
+                <option value="Africa">Africa</option>
+                <option value="America">America</option>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+                <option value="Oceania">Oceania</option>
+            
+                
+            </select>
+
+        </div>
+        <div id="content" class="space-y-4">
+          
+            <div id="shimmer" class="relative overflow-hidden bg-gray-200 rounded-md min-h-14 min-w-2 ml-2 p-4 flex">
+              <div class="absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer"></div>
+              <div class=" flex justify-center items-center text-black"><b>Loading...</b></div>
+            </div>
+            <div id="actual" class="hidden"> 
+
+                <div class=" main_container flex gap-3 flex-wrap size-full justify-center">
+        </div>
+            
+        </div>
+    </main>
+        <!-- <div class="border-red-50 h-56 bg-red-400 w-72 ml-2 flex flex-col items-center justify-center flex-wrap">
+            <img src="./images/12.jpeg" alt="image">
+            <div class="card-text">
+                <h3>Iceland</h3>
+                <p><b>Population:10000</b></p>
+                <p><b>Region:north</b></p>
+                <p><b>Capital:Delhi</b></p>
+            </div>
+                     -->
+        
+
+    
+</body>
+</html>
