@@ -9,7 +9,7 @@ fetch("https://restcountries.com/v3.1/all")
     render(data);
     console.log(data);
     allCountries=data;
-    document.getElementById("shimmer").classList.add("hidden");  // Hide shimmer
+    document.getElementById("shimmer").classList.add("hidden"); 
     document.getElementById("actual").classList.remove("hidden");
   })
   .catch((err) => console.log(err));
@@ -17,7 +17,7 @@ filterbycontinent.addEventListener("change", () => {
   fetch(`https://restcountries.com/v3.1/region/${filterbycontinent.value}`)
     .then((res) => res.json())
     .then((data) =>{
-      document.getElementById("shimmer").classList.add("hidden");  // Hide shimmer
+      document.getElementById("shimmer").classList.add("hidden"); 
       document.getElementById("actual").classList.remove("hidden");
       render(data)
     })
@@ -97,14 +97,23 @@ search_filter.addEventListener('input',(e)=>{
     const filtered=allCountries.filter((countries)=>countries.name.common.toLowerCase().includes(e.target.value.toLowerCase()))
     render(filtered);
 })
-theme.addEventListener('click',()=>{
-    document.documentElement.classList.toggle('dark');
-    console.log("done");
-    if(document.documentElement.classList.contains('dark'))
-    {
-        theme.src=`./images/sun.svg`
-    }
-    else{
-        theme.src=`./images/moon.svg`
-    }
-})
+theme.addEventListener("click", () => {
+  document.documentElement.classList.toggle("dark");
+  if (document.documentElement.classList.contains("dark")) {
+    localStorage.setItem('isdark','dark_mode')
+    theme.src = `./images/sun.svg`;
+  } else {
+    theme.src = `./images/moon.svg`;
+    localStorage.setItem('isdark','light_mode')
+  }
+});
+const thememode=localStorage.getItem('isdark');
+if(thememode=='dark_mode')
+{
+  document.documentElement.classList.add("dark");
+  theme.src = `./images/sun.svg`;
+}
+else{
+  document.documentElement.classList.remove("dark");
+  theme.src = `./images/moon.svg`;
+}

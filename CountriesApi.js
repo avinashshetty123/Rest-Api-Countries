@@ -11,22 +11,33 @@ const currency = document.querySelector(".Currencies");
 const Languages = document.querySelector(".Languages");
 const borders = document.querySelector(".border_countries");
 const countryname = new URLSearchParams(location.search).get("name");
-console.log(countryname);
+
 theme.addEventListener("click", () => {
   document.documentElement.classList.toggle("dark");
-  console.log("done");
   if (document.documentElement.classList.contains("dark")) {
+    localStorage.setItem('isdark','dark_mode')
     theme.src = `./images/sun.svg`;
   } else {
     theme.src = `./images/moon.svg`;
+    localStorage.setItem('isdark','light_mode')
   }
 });
+const thememode=localStorage.getItem('isdark');
+if(thememode=='dark_mode')
+{
+  document.documentElement.classList.add("dark");
+  theme.src = `./images/sun.svg`;
+}
+else{
+  document.documentElement.classList.remove("dark");
+  theme.src = `./images/moon.svg`;
+}
 fetch(`https://restcountries.com/v3.1/name/${countryname}`)
   .then((res) => res.json())
   .then((data) => {
     render(data);
     console.log(data);
-    document.getElementById("shimmer").classList.add("hidden");  // Hide shimmer
+    document.getElementById("shimmer").classList.add("hidden");  
     document.getElementById("actual").classList.remove("hidden");
   })
   .catch((err) => console.log(err));
@@ -57,7 +68,7 @@ function render(data) {
       fetch(`https://restcountries.com/v3.1/alpha/${border}`)
         .then((res) => res.json())
         .then((data) => renderborder(data[0]));
-        document.getElementById("shimmer").classList.add("hidden");  // Hide shimmer
+        document.getElementById("shimmer").classList.add("hidden");  
         document.getElementById("actual").classList.remove("hidden");
     });
     function renderborder(data)
