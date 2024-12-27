@@ -85,6 +85,7 @@ function render(data) {
       anchor.href = `/Countries.html?name=${data.name.common}`;
       anchor.classList.add(
         "hover:bg-blue-100",
+        "dark:hover:text-black",
         "border-2",
         "rounded-lg",
         "self-center",
