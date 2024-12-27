@@ -39,9 +39,9 @@ fetch(`https://restcountries.com/v3.1/name/${countryname}`)
     document.getElementById("actual").classList.remove("hidden");
   })
   .catch((err) => {
-    getrror.classList.remove("hidden");
-    getrror.innerText = `${err}`;
-    document.getElementById("shimmer").classList.add("hidden");
+    // getrror.classList.remove("hidden");
+    // getrror.innerText = `${err}`;
+    // document.getElementById("shimmer").classList.add("hidden");
   });
 
 function render(data) {
@@ -75,9 +75,9 @@ function render(data) {
       document.getElementById("shimmer").classList.add("hidden");
       document.getElementById("actual").classList.remove("hidden");
     }).catch((err)=>{
-      getrror.classList.remove("hidden");
-      getrror.innerText = `${err}`;
-      document.getElementById("shimmer").classList.add("hidden");
+      // getrror.classList.remove("hidden");
+      // getrror.innerText = `${err}`;
+      // document.getElementById("shimmer").classList.add("hidden");
     })
     function renderborder(data) {
       const anchor = document.createElement("a");
