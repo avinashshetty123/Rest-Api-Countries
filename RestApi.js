@@ -2,56 +2,66 @@ const search_filter = document.querySelector(".searcher");
 const filterbycontinent = document.querySelector("#sel");
 const theme = document.querySelector(".theme-changer");
 const CountriesMain = document.querySelector(".main_container");
+const getrror = document.querySelector(".err");
+console.log(getrror);
 let allCountries;
 fetch("https://restcountries.com/v3.1/all")
   .then((res) => res.json())
   .then((data) => {
     render(data);
     console.log(data);
-    allCountries=data;
-    document.getElementById("shimmer").classList.add("hidden"); 
+    allCountries = data;
+    document.getElementById("shimmer").classList.add("hidden");
     document.getElementById("actual").classList.remove("hidden");
   })
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    getrror.classList.remove("hidden");
+    getrror.innerText = `${err}`;
+    document.getElementById("shimmer").classList.add("hidden");
+  });
 filterbycontinent.addEventListener("change", () => {
   fetch(`https://restcountries.com/v3.1/region/${filterbycontinent.value}`)
     .then((res) => res.json())
-    .then((data) =>{
-      document.getElementById("shimmer").classList.add("hidden"); 
+    .then((data) => {
+      document.getElementById("shimmer").classList.add("hidden");
       document.getElementById("actual").classList.remove("hidden");
-      render(data)
+      render(data);
     })
-      
-    .catch((err) => console.log(err));
+
+    .catch((err) => {
+      getrror.classList.remove("hidden");
+      getrror.innerText = `${err}`;
+      document.getElementById("shimmer").classList.add("hidden");
+    });
 });
 function render(data) {
   CountriesMain.innerHTML = "";
   data.forEach((country) => {
     const countrycard = document.createElement("a");
     countrycard.classList.add(
-        "countries_container",
-        "border-red-50",
-        "h-66",
-        "bg-red-200",
-        "dark:bg-neutral-800",
-        "dark:text-white",
-        "w-64",
-        "flex",
-        "ml-2",
-        "flex-col",
-        "items-center",
-        "justify-center",
-        "p-4",
-        "transition-transform",
-        "duration-300",
-        "ease-in-out",
-        "transform",
-        "group",
-        "hover:scale-105",
-        "hover:shadow-lg"
-      );
-      
-      
+      "countries_container",
+      "border-red-50",
+      "h-66",
+      "bg-blue-200",
+      "rounded-lg",
+      "dark:bg-neutral-800",
+      "dark:text-white",
+      "w-64",
+      "flex",
+      "ml-2",
+      "flex-col",
+      "items-center",
+      "justify-center",
+      "p-4",
+      "transition-transform",
+      "duration-300",
+      "ease-in-out",
+      "transform",
+      "group",
+      "hover:scale-105",
+      "hover:shadow-lg"
+    );
+
     countrycard.href = `/Countries.html?name=${country.name.common}`;
     let img = document.createElement("img");
     img.src = `${country.flags.svg}`;
@@ -93,27 +103,27 @@ function render(data) {
     CountriesMain.appendChild(countrycard);
   });
 }
-search_filter.addEventListener('input',(e)=>{
-    const filtered=allCountries.filter((countries)=>countries.name.common.toLowerCase().includes(e.target.value.toLowerCase()))
-    render(filtered);
-})
+search_filter.addEventListener("input", (e) => {
+  const filtered = allCountries.filter((countries) =>
+    countries.name.common.toLowerCase().includes(e.target.value.toLowerCase())
+  );
+  render(filtered);
+});
 theme.addEventListener("click", () => {
   document.documentElement.classList.toggle("dark");
   if (document.documentElement.classList.contains("dark")) {
-    localStorage.setItem('isdark','dark_mode')
+    localStorage.setItem("isdark", "dark_mode");
     theme.src = `./images/sun.svg`;
   } else {
     theme.src = `./images/moon.svg`;
-    localStorage.setItem('isdark','light_mode')
+    localStorage.setItem("isdark", "light_mode");
   }
 });
-const thememode=localStorage.getItem('isdark');
-if(thememode=='dark_mode')
-{
+const thememode = localStorage.getItem("isdark");
+if (thememode == "dark_mode") {
   document.documentElement.classList.add("dark");
   theme.src = `./images/sun.svg`;
-}
-else{
+} else {
   document.documentElement.classList.remove("dark");
   theme.src = `./images/moon.svg`;
 }
